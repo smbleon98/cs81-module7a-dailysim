@@ -7,12 +7,19 @@
 <body style="font-family: sans-serif; text-align: center; padding-top: 60px; background-color: #eef;">
 
   <h1>My Simulated Day</h1>
-  <div id="output" style="margin-top: 40px; font-size: 1.5rem;"></div>
+  <p id="mood"></p>
+  <div id="output" style="margin-top: 30px; font-size: 1.5rem;"></div>
+
   <p id="activity"> </p>
 
 
   <script>
+    let moods = ['😭', '😊']; 
+
     const output = document.getElementById("output");
+    const mood = document.getElementById("mood");
+
+    mood.innerHTML = moods[0];
     
     let activities = ['7:40am - Wake up', '8:15am - Log in for work', '1:00pm - Eat lunch', '5:30pm - Log off of work',
       '5:30pm - Decompress for 1.5-2 hrs', '7:00pm - Take a shower', '8:00pm - Do some more work for a few more hours',
@@ -28,10 +35,17 @@
       const act = document.getElementById("activity");
 
       for (let i = 0; i < activities.length; i++){
-        setTimeout(() => showActivity(activities[i]), (i*2000));
-      }
+        setTimeout(() => {showActivity(activities[i]); 
+          if (i === 3 || i === 4 || i === 5){               // Added a surprise element that shows mood per activity
+            mood.innerHTML = moods[1];                      // I'm happy only when I log off of work, decompress, take a shower
+          } else{                                           // Otherwise, I'm sad, because my life pretty much revolves around work
+            mood.innerHTML = moods[0];
+          }
+        }, (i*2000));
+      };
 
     };
+
 
     runDay();
 
