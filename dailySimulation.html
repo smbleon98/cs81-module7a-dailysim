@@ -8,11 +8,31 @@
 
   <h1>My Simulated Day</h1>
   <div id="output" style="margin-top: 40px; font-size: 1.5rem;"></div>
+  <p id="activity"> </p>
+
 
   <script>
     const output = document.getElementById("output");
     
-    # ADD CODE HERE
+    let activities = ['7:40am - Wake up', '8:15am - Log in for work', '1:00pm - Eat lunch', '5:30pm - Log off of work',
+      '5:30pm - Decompress for 1.5-2 hrs', '7:00pm - Take a shower', '8:00pm - Do some more work for a few more hours',
+      '9:00pm - Eat dinner', '1:00am to 2:00am - Go to sleep'
+    ];
+
+    function showActivity(act){
+      output.innerHTML += ("<br>" + act);
+    };
+
+    // ADD CODE HERE
+    function runDay(){
+      const act = document.getElementById("activity");
+
+      for (let i = 0; i < activities.length; i++){
+        setTimeout(() => showActivity(activities[i]), (i*2000));
+      }
+    };
+
+    runDay();
 
   </script>
 
